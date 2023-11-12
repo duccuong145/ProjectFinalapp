@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:project_final/config/widget/bottombar_config.dart';
-import 'package:project_final/config/widget/itemcategory_config.dart';
-import 'package:project_final/config/widget/itemproduct_config.dart';
-import 'package:project_final/pages/category/category_home.dart';
-import 'package:project_final/pages/home/home.dart';
-import 'package:project_final/pages/product/product.dart';
+
+import 'package:project_final/pages/review/review.dart';
+
 import 'package:project_final/pages/product/product_categoty.dart';
 import 'package:project_final/pages/product/product_detail.dart';
 import 'package:project_final/pages/profile/profile.dart';
@@ -20,25 +19,31 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => CategoryProvider(),
-          ),
-          ChangeNotifierProvider(create: (_) => ThemeProvider()),
-        ],
-        child: const MaterialApp(
-          debugShowCheckedModeBanner: false,
-          initialRoute: Routes.homePage,
-          onGenerateRoute: RouteName.onGenerateRoute,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => CategoryProvider(),
         ),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
+      child: Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          return MaterialApp(
+            builder: EasyLoading.init(),
+            theme:
+                themeProvider.isDarkMode ? ThemeData.dark() : ThemeData.light(),
+            darkTheme: ThemeData(
+              brightness: Brightness.dark,
+              textTheme: const TextTheme(
+                bodyLarge: TextStyle(color: Colors.blue),
+              ),
+            ),
+            themeMode: ThemeMode.light,
+            debugShowCheckedModeBanner: false,
+            initialRoute: Routes.signinPage,
+            onGenerateRoute: RouteName.onGenerateRoute,
+          );
+        },
       ),
     );
   }

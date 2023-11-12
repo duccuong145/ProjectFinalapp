@@ -1,87 +1,82 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:project_final/config/widget/bottombar_config.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
+import 'package:project_final/pages/home/widget/home_appbar.dart';
+import 'package:project_final/pages/home/widget/home_category.dart';
+import 'package:project_final/pages/home/widget/home_product.dart';
+import 'package:project_final/pages/home/widget/home_search.dart';
+import 'package:project_final/pages/home/widget/home_slider.dart';
+import 'package:project_final/providers/category_provider.dart';
 import 'package:project_final/routes/roures.dart';
 
-class HomePage extends StatelessWidget {
+import 'package:provider/provider.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _CategoryHomeState();
+}
+
+class _CategoryHomeState extends State<HomePage> {
+  late Future categoryrFuture;
+  @override
+  void didChangeDependencies() {
+    categoryrFuture = Provider.of<CategoryProvider>(context).getSlider();
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.green[600],
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-              child: Column(
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const HomeAppBar(),
+              spaceHeight(context, height: 0.02),
+              const HomeSearch(),
+              spaceHeight(context, height: 0.02),
+              const AspectRatio(
+                aspectRatio: 2 / 1,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: HomeSlider(),
+                ),
+              ),
+              spaceHeight(context, height: 0.02),
+              Row(
                 children: [
-                  spaceHeight(context, height: 0.05),
-                  Center(
-                    child: SizedBox(
-                      height: getHeight(context, height: 0.4),
-                      width: getWidth(context, width: 0.8),
-                      child: Image.asset(
-                        'assets/images/Group.png',
-                        fit: BoxFit.contain,
-                      ),
+                  Expanded(
+                    child: Text(
+                      'Categories',
+                      style: mediumTextStyle(context),
                     ),
                   ),
-                  spaceHeight(context, height: 0.05),
-                  Text(
-                    'Welcome to Tanam !',
-                    style: mediumTextStyle(context,
-                        size: 0.04, color: Colors.white),
-                  ),
-                  Text(
-                    'Grocery Applications',
-                    style: mediumTextStyle(context,
-                        size: 0.04, color: Colors.white),
-                  ),
-                  spaceHeight(context),
-                  Text(
-                    'Omnis neque voluptatem dignissimos magnam commodi iure. Repellendus voluptatem et suscipit quaerat optio sunt inventore sint est. Odit modi nobis adipisci aut voluptatibus ut impedit. Omnis aliquam dolore aut et ut facilis maiores.',
-                    style: smallTextStyle(context,
-                        size: 0.02, color: Colors.white),
-                    textAlign: TextAlign.center,
-                  ),
-                  spaceHeight(context),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        height: getHeight(context, height: 0.01),
-                        width: getWidth(context, width: 0.01),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(100),
-                            color: Colors.white),
-                      ),
-                      spaceWidth(context, width: 0.01),
-                      Container(
-                        height: getHeight(context, height: 0.01),
-                        width: getWidth(context, width: 0.01),
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(borderRadius(context)),
-                            color: Colors.white),
-                      ),
-                    ],
-                  ),
-                  spaceHeight(context),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, Routes.signinPage);
+                      EasyLoading.showProgress(0.3, status: 'downloading...');
+                      Future.delayed(const Duration(seconds: 2), () {
+                        EasyLoading.dismiss();
+                      });
+                      Navigator.pushNamed(context, Routes.productCategoryPage);
                     },
-                    child: Text(
-                      'Next',
-                      style: largeTextStyle(context, color: Colors.white),
+                    child: const Icon(
+                      Icons.keyboard_arrow_right_outlined,
+                      size: 30,
                     ),
                   ),
                 ],
               ),
-            ),
+              const HomeCategory(),
+              spaceHeight(context, height: 0.02),
+              const HomeProduct(),
+            ],
           ),
         ),
       ),

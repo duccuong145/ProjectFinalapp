@@ -1,14 +1,15 @@
 class Routes {
-  static const homePage = '/';
+  static const reviewPage = '/';
   static const signinPage = '/signinPage';
-  static const categoryHomePage = '/categoryHomePage';
   static const productDetailPage = '/productDetailPage';
-  static const productPage = '/productPage';
+  static const searchPage = '/searchPage';
   static const profilePage = '/profilePage';
   static const navigationPage = '/navigationPage';
   static const productCategoryPage = '/productCategoryPage';
   static const bottomBarPage = '/bottomBarPage';
   static const categoryPopularPage = '/categoryPopularPage';
-  static const itemCategoryPage = '/itemCategoryPage';
-  static const itemProductPage = '/itemProductPage';
+  static const categoryHomePage = '/categoryHomePage';
+  static const homePage = '/homePage';
+  static const homeCategoryPage = '/homeCategoryPage';
+  static const searchCategoryPage = '/searchCategoryPage';
 }

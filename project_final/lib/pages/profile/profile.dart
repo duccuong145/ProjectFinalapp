@@ -5,8 +5,14 @@ import 'package:project_final/config/widget/text_config.dart';
 import 'package:project_final/providers/theme_provider.dart';
 import 'package:provider/provider.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,7 +39,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.discount_outlined, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -51,7 +57,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.label_important_outline, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -69,7 +75,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.confirmation_num_outlined, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -87,7 +93,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.coffee_sharp, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -105,7 +111,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.location_on_outlined, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -123,7 +129,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.payment_outlined, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -148,7 +154,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.assignment_ind, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -184,7 +190,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.security_outlined, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -202,7 +208,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.language_outlined, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -224,7 +230,7 @@ class Profile extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.catching_pokemon_outlined, size: 30),
+                    const Icon(Icons.remove_red_eye_outlined, size: 30),
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
@@ -232,6 +238,16 @@ class Profile extends StatelessWidget {
                         style: largeTextStyle(context, size: 0.03),
                       ),
                     ),
+                    Consumer<ThemeProvider>(
+                      builder: (context, themeProvider, child) {
+                        return Switch(
+                          value: themeProvider.isDarkMode,
+                          onChanged: (value) {
+                            themeProvider.toggleTheme();
+                          },
+                        );
+                      },
+                    )
                   ],
                 ),
               ],

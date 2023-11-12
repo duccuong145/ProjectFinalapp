@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:project_final/pages/category/category_home.dart';
-import 'package:project_final/pages/product/product.dart';
+import 'package:project_final/pages/home/home.dart';
+import 'package:project_final/pages/product/product_categoty.dart';
+
 import 'package:project_final/pages/profile/profile.dart';
 
 class BottomBar extends StatefulWidget {
@@ -14,8 +15,8 @@ class _BottomBarState extends State<BottomBar> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
-    CategoryHome(),
-    Product(),
+    HomePage(),
+    ProductCategory(),
     Profile(),
   ];
 

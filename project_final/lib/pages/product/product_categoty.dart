@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:project_final/config/widget/bottombar_config.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
 import 'package:project_final/routes/roures.dart';
@@ -19,6 +21,10 @@ class ProductCategory extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
+                      EasyLoading.show(status: 'loading...');
+                      Future.delayed(const Duration(seconds: 2), () {
+                        EasyLoading.dismiss();
+                      });
                       Navigator.pop(
                         context,
                       );
