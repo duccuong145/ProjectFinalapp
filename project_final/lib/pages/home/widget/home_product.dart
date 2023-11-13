@@ -98,7 +98,7 @@ class HomeProduct extends StatelessWidget {
                                     context, Routes.productDetailPage);
                               },
                               child: Text(
-                                'Add to card',
+                                'Add to cart',
                                 style: mediumTextStyle(context,
                                     color: Colors.green[700]),
                               ),

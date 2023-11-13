@@ -87,7 +87,7 @@ class SigninScreen extends StatelessWidget {
                       child: InkWell(
                         onTap: () {
                           EasyLoading.showSuccess('Great Success!');
-                          Future.delayed(const Duration(seconds: 2), () {
+                          Future.delayed(const Duration(seconds: 3), () {
                             EasyLoading.dismiss();
                           });
                           Navigator.pushNamed(context, Routes.homePage);
@@ -140,12 +140,21 @@ class SigninScreen extends StatelessWidget {
                       height: getHeight(context, height: 0.08),
                       child: Container(
                         decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.grey.withOpacity(0.2),
+                                spreadRadius: 5,
+                                blurRadius: 7,
+                                offset: const Offset(
+                                    0, 3), // changes position of shadow
+                              ),
+                            ],
                             borderRadius: BorderRadius.circular(20),
-                            color: Colors.green),
+                            color: Colors.white),
                         child: Center(
                           child: Text(
                             'CREATE AN ACCOUNT',
-                            style: largeTextStyle(context, color: Colors.white),
+                            style: largeTextStyle(context, color: Colors.green),
                           ),
                         ),
                       ),

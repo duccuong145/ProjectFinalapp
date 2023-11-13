@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
 import 'package:project_final/pages/signin/signin_screen.dart';
@@ -17,9 +18,11 @@ class _HomePageState extends State<ReviewPage> {
     return GestureDetector(
       onHorizontalDragEnd: (details) {
         if (details.velocity.pixelsPerSecond.dx > 0) {
-          // User swiped right
         } else {
-          // User swiped left
+          EasyLoading.show(status: 'loading...');
+          Future.delayed(const Duration(seconds: 3), () {
+            EasyLoading.dismiss();
+          });
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const SigninScreen()),

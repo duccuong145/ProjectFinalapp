@@ -27,22 +27,29 @@ class ProductDetail extends StatelessWidget {
                       });
                       Navigator.pop(context);
                     },
-                    child: const Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                      color: Colors.white,
+                    child: Container(
+                      width: getWidth(context, width: 0.1),
+                      height: getHeight(context, height: 0.05),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.grey,
+                          border: Border.all(color: Colors.black)),
+                      child: const Icon(
+                        Icons.arrow_back,
+                        size: 30,
+                      ),
                     ),
                   ),
                   const Spacer(),
                   const Icon(
                     Icons.favorite,
-                    color: Colors.white,
+                    color: Colors.redAccent,
                     size: 30,
                   ),
                   const Icon(
                     Icons.more_vert,
                     size: 30,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ],
               ),
@@ -60,7 +67,7 @@ class ProductDetail extends StatelessWidget {
                   color: Colors.white),
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: getWidth(context),
+                  horizontal: getWidth(context, width: 0.05),
                   vertical: getHeight(context),
                 ),
                 child: Column(
@@ -116,13 +123,21 @@ class ProductDetail extends StatelessWidget {
                           style: largeTextStyle(context),
                         ),
                         const Expanded(child: SizedBox()),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.yellow),
-                          child: Text(
-                            '-',
-                            style: mediumTextStyle(context),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: getWidth(context, width: 0.15),
+                            height: getHeight(context, height: 0.06),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.white,
+                                border: Border.all(color: Colors.black)),
+                            child: Center(
+                              child: Text(
+                                '-',
+                                style: largeTextStyle(context, size: 0.05),
+                              ),
+                            ),
                           ),
                         ),
                         spaceWidth(context),
@@ -131,13 +146,22 @@ class ProductDetail extends StatelessWidget {
                           style: largeTextStyle(context),
                         ),
                         spaceWidth(context),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green),
-                          child: Text(
-                            '+',
-                            style: mediumTextStyle(context),
+                        InkWell(
+                          onTap: () {},
+                          child: Container(
+                            width: getWidth(context, width: 0.15),
+                            height: getHeight(context, height: 0.06),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                color: Colors.lightGreenAccent,
+                                border: Border.all(color: Colors.black)),
+                            child: Center(
+                              child: Text(
+                                '+',
+                                style: largeTextStyle(context,
+                                    size: 0.04, color: Colors.green[800]),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -174,7 +198,7 @@ class ProductDetail extends StatelessWidget {
                               size: 30,
                             ),
                             Text(
-                              'ADD TO CARD',
+                              'ADD TO CART',
                               style:
                                   largeTextStyle(context, color: Colors.white),
                             ),

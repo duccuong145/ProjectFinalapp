@@ -29,9 +29,17 @@ class ProductCategory extends StatelessWidget {
                         context,
                       );
                     },
-                    child: const Icon(
-                      Icons.arrow_back,
-                      size: 30,
+                    child: Container(
+                      width: getWidth(context, width: 0.1),
+                      height: getHeight(context, height: 0.05),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white,
+                          border: Border.all(color: Colors.black)),
+                      child: const Icon(
+                        Icons.arrow_back,
+                        size: 30,
+                      ),
                     ),
                   ),
                   const Expanded(child: SizedBox()),

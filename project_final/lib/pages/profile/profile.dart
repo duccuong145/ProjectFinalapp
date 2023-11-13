@@ -234,7 +234,7 @@ class _ProfileState extends State<Profile> {
                     spaceWidth(context, width: 0.02),
                     Expanded(
                       child: Text(
-                        'Dart Mode',
+                        'Dark Mode',
                         style: largeTextStyle(context, size: 0.03),
                       ),
                     ),

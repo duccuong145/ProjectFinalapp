@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             ),
             themeMode: ThemeMode.light,
             debugShowCheckedModeBanner: false,
-            initialRoute: Routes.signinPage,
+            initialRoute: Routes.reviewPage,
             onGenerateRoute: RouteName.onGenerateRoute,
           );
         },
