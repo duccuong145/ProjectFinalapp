@@ -18,9 +18,10 @@ class _ProfileState extends State<Profile> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.yellow,
+          backgroundColor: Colors.white,
+          elevation: 0,
           leading: const CircleAvatar(
-            backgroundColor: Colors.yellow,
+            backgroundColor: Colors.white,
             backgroundImage: NetworkImage(
                 'https://pngimg.com/uploads/tomato/tomato_PNG12510.png'),
           ),

@@ -21,10 +21,6 @@ class ProductCategory extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      EasyLoading.show(status: 'loading...');
-                      Future.delayed(const Duration(seconds: 2), () {
-                        EasyLoading.dismiss();
-                      });
                       Navigator.pop(
                         context,
                       );
@@ -48,9 +44,15 @@ class ProductCategory extends StatelessWidget {
                     style: largeTextStyle(context, color: Colors.red),
                   ),
                   const Expanded(child: SizedBox()),
-                  const Icon(
-                    Icons.more_vert,
-                    size: 30,
+                  PopupMenuButton(
+                    icon: const Icon(
+                      Icons.more_vert,
+                      size: 30,
+                    ),
+                    itemBuilder: (context) => [
+                      const PopupMenuItem(child: Text('Infor')),
+                      const PopupMenuItem(child: Text('Favorite')),
+                    ],
                   ),
                 ],
               ),

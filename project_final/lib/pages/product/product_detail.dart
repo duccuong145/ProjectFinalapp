@@ -21,10 +21,6 @@ class ProductDetail extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      EasyLoading.show(status: 'loading...');
-                      Future.delayed(const Duration(seconds: 2), () {
-                        EasyLoading.dismiss();
-                      });
                       Navigator.pop(context);
                     },
                     child: Container(
@@ -33,10 +29,11 @@ class ProductDetail extends StatelessWidget {
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           color: Colors.grey,
-                          border: Border.all(color: Colors.black)),
+                          border: Border.all(color: Colors.white)),
                       child: const Icon(
                         Icons.arrow_back,
                         size: 30,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -46,10 +43,16 @@ class ProductDetail extends StatelessWidget {
                     color: Colors.redAccent,
                     size: 30,
                   ),
-                  const Icon(
-                    Icons.more_vert,
-                    size: 30,
-                    color: Colors.black,
+                  PopupMenuButton(
+                    icon: const Icon(
+                      Icons.more_vert,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                    itemBuilder: (context) => [
+                      const PopupMenuItem(child: Text('Show all')),
+                      const PopupMenuItem(child: Text('Favorite')),
+                    ],
                   ),
                 ],
               ),

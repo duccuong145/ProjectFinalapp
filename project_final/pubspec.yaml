@@ -42,6 +42,7 @@ dependencies:
   font_awesome_flutter: ^10.6.0
   flutter_icons_plus: ^1.0.3
   flutter_easyloading: ^3.0.5
+  like_button: ^2.0.5
 
 dev_dependencies:
   flutter_test:

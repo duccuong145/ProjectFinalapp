@@ -60,10 +60,6 @@ class _CategoryHomeState extends State<HomePage> {
                   ),
                   InkWell(
                     onTap: () {
-                      EasyLoading.showProgress(0.3, status: 'downloading...');
-                      Future.delayed(const Duration(seconds: 2), () {
-                        EasyLoading.dismiss();
-                      });
                       Navigator.pushNamed(context, Routes.productCategoryPage);
                     },
                     child: const Icon(
@@ -74,6 +70,11 @@ class _CategoryHomeState extends State<HomePage> {
                 ],
               ),
               const HomeCategory(),
+              spaceHeight(context, height: 0.02),
+              Text(
+                'Popular Deals',
+                style: mediumTextStyle(context),
+              ),
               spaceHeight(context, height: 0.02),
               const HomeProduct(),
             ],

@@ -9,7 +9,10 @@ class HomeCategory extends StatelessWidget {
     return SizedBox(
       height: getHeight(context, height: 0.2),
       child: ListView.separated(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: EdgeInsets.symmetric(
+            horizontal: getHeight(context, height: 0.02),
+            vertical: getWidth(context, width: 0.02),
+          ),
           scrollDirection: Axis.horizontal,
           separatorBuilder: (BuildContext context, int index) {
             return SizedBox(
@@ -18,19 +21,23 @@ class HomeCategory extends StatelessWidget {
           },
           itemBuilder: (BuildContext context, int index) {
             return Container(
-              padding: const EdgeInsets.symmetric(vertical: 20),
+              padding: EdgeInsets.symmetric(
+                  vertical: getHeight(context, height: 0.02)),
               width: getWidth(context, width: 0.3),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.primaries[index],
-                  image: const DecorationImage(
-                      alignment: Alignment.topCenter,
-                      image: AssetImage('assets/images/ic_Fruit.png'),
-                      fit: BoxFit.scaleDown,
-                      scale: 0.5)),
+                borderRadius: BorderRadius.circular(20),
+                color: Colors.primaries[index],
+              ),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  Expanded(
+                    child: Container(
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/ic_Fruit.png'),
+                              fit: BoxFit.scaleDown)),
+                    ),
+                  ),
                   Text(
                     'Fruits',
                     style: mediumTextStyle(context, color: Colors.white),

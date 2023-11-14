@@ -6,8 +6,16 @@ import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
 import 'package:project_final/routes/roures.dart';
 
-class SigninScreen extends StatelessWidget {
+class SigninScreen extends StatefulWidget {
   const SigninScreen({super.key});
+
+  @override
+  State<SigninScreen> createState() => _SigninScreenState();
+}
+
+class _SigninScreenState extends State<SigninScreen> {
+  bool _obscureText = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,125 +49,124 @@ class SigninScreen extends StatelessWidget {
               child: Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 25, vertical: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Welcome back',
-                      style: largeTextStyle(context),
-                    ),
-                    spaceHeight(context),
-                    Text(
-                      'reprehenderit maiores modi',
-                      style: smallTextStyle(context, size: 0.02),
-                    ),
-                    spaceHeight(context),
-                    const TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Name Account',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(
-                          Icons.account_circle,
-                          size: 30,
-                        ),
-                        fillColor: Colors.pink,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Welcome back',
+                        style: largeTextStyle(context),
                       ),
-                    ),
-                    spaceHeight(context),
-                    const TextField(
-                      decoration: InputDecoration(
-                        hintText: 'Password',
-                        border: OutlineInputBorder(),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                          size: 30,
-                        ),
-                        suffixIcon: Icon(
-                          Icons.remove_red_eye,
-                          color: Colors.green,
-                        ),
-                        fillColor: Colors.green,
+                      spaceHeight(context),
+                      Text(
+                        'reprehenderit maiores modi',
+                        style: smallTextStyle(context, size: 0.02),
                       ),
-                    ),
-                    spaceHeight(context),
-                    InkWell(
-                      onTap: () {},
-                      child: InkWell(
-                        onTap: () {
-                          EasyLoading.showSuccess('Great Success!');
-                          Future.delayed(const Duration(seconds: 3), () {
-                            EasyLoading.dismiss();
-                          });
-                          Navigator.pushNamed(context, Routes.homePage);
-                        },
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: getHeight(context, height: 0.08),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.green),
-                            child: Center(
-                              child: Text(
-                                'SIGN IN',
-                                style: largeTextStyle(context,
-                                    color: Colors.white),
+                      spaceHeight(context),
+                      const TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Name Account',
+                          border: OutlineInputBorder(),
+                          prefixIcon: Icon(
+                            Icons.account_circle,
+                            size: 30,
+                          ),
+                          fillColor: Colors.pink,
+                        ),
+                      ),
+                      spaceHeight(context),
+                      TextFormField(
+                        obscureText: _obscureText,
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          border: const OutlineInputBorder(),
+                          prefixIcon: const Icon(
+                            Icons.lock,
+                            size: 30,
+                          ),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _obscureText
+                                  ? Icons.visibility_off
+                                  : Icons.visibility,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _obscureText = !_obscureText;
+                              });
+                            },
+                          ),
+                        ),
+                      ),
+                      spaceHeight(context),
+                      InkWell(
+                        onTap: () {},
+                        child: InkWell(
+                          onTap: () {
+                            Future.delayed(const Duration(seconds: 2), () {});
+                            Navigator.pushNamed(context, Routes.homePage);
+                          },
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: getHeight(context, height: 0.08),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.green),
+                              child: Center(
+                                child: Text(
+                                  'SIGN IN',
+                                  style: largeTextStyle(context,
+                                      color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    spaceHeight(context, height: 0.025),
-                    Row(
-                      children: [
-                        const CheckBox(),
-                        const Expanded(
-                          child: Text('Keep Sign in'),
-                        ),
-                        Expanded(
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.pushNamed(context, Routes.signinPage);
-                            },
-                            child: const Text('Forgot Pasword?'),
+                      spaceHeight(context, height: 0.025),
+                      Row(
+                        children: [
+                          const CheckBox(),
+                          const Expanded(
+                            child: Text('Keep Sign in'),
                           ),
-                        ),
-                      ],
-                    ),
-                    spaceHeight(context, height: 0.02),
-                    Center(
-                      child: Text(
-                        'Do not have an account ?',
-                        style: mediumTextStyle(context),
+                          Expanded(
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, Routes.signinPage);
+                              },
+                              child: const Text('Forgot Pasword?'),
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    spaceHeight(context, height: 0.02),
-                    SizedBox(
-                      width: double.infinity,
-                      height: getHeight(context, height: 0.08),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.grey.withOpacity(0.2),
-                                spreadRadius: 5,
-                                blurRadius: 7,
-                                offset: const Offset(
-                                    0, 3), // changes position of shadow
-                              ),
-                            ],
-                            borderRadius: BorderRadius.circular(20),
-                            color: Colors.white),
-                        child: Center(
-                          child: Text(
-                            'CREATE AN ACCOUNT',
-                            style: largeTextStyle(context, color: Colors.green),
+                      spaceHeight(context, height: 0.02),
+                      Center(
+                        child: Text(
+                          'Do not have an account ?',
+                          style: mediumTextStyle(context),
+                        ),
+                      ),
+                      spaceHeight(context, height: 0.02),
+                      SizedBox(
+                        width: double.infinity,
+                        height: getHeight(context, height: 0.08),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(20),
+                              color: Colors.green),
+                          child: Center(
+                            child: Text(
+                              'CREATE AN ACCOUNT',
+                              style: largeTextStyle(context,
+                                  size: 0.03, color: Colors.white),
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

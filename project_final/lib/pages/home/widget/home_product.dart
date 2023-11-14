@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:like_button/like_button.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
 import 'package:project_final/routes/roures.dart';
@@ -15,11 +16,12 @@ class HomeProduct extends StatelessWidget {
         crossAxisCount: 2,
         mainAxisSpacing: 15,
         crossAxisSpacing: 15,
-        childAspectRatio: 1 / 1.9,
+        childAspectRatio: 1 / 2,
       ),
       itemCount: 10,
       itemBuilder: (BuildContext context, int index) {
         return Container(
+          padding: EdgeInsets.only(bottom: getHeight(context, height: 0.02)),
           clipBehavior: Clip.hardEdge,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20.0),
@@ -36,28 +38,35 @@ class HomeProduct extends StatelessWidget {
             children: [
               Expanded(
                 child: Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  alignment: Alignment.topLeft,
-                  color: Colors.grey.shade400,
-                  child: const Icon(
-                    Icons.favorite_border_outlined,
+                  padding: EdgeInsets.symmetric(
+                      horizontal: getWidth(context, width: 0.02),
+                      vertical: getHeight(context, height: 0.02)),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(
+                            'https://mobilepriceall.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-Max.jpg'),
+                        fit: BoxFit.cover),
+                  ),
+                  child: const LikeButton(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
                   ),
                 ),
               ),
-              spaceHeight(context, height: 0.02),
+              spaceHeight(context, height: 0.01),
               Expanded(
                 child: SizedBox(
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getWidth(context, width: 0.02),
+                        vertical: getHeight(context, height: 0.02)),
                     child: Column(
                       children: [
                         Text(
-                          'Chicken Village',
+                          'Iphone 15 Pro Max',
                           style: mediumTextStyle(context),
                         ),
-                        spaceHeight(context),
+                        spaceHeight(context, height: 0.03),
                         Row(
                           children: [
                             Expanded(
@@ -80,7 +89,7 @@ class HomeProduct extends StatelessWidget {
                             )
                           ],
                         ),
-                        spaceHeight(context, height: 0.02),
+                        spaceHeight(context, height: 0.03),
                         Container(
                           height: getHeight(context, height: 0.07),
                           width: getWidth(context, width: 0.32),
@@ -90,10 +99,6 @@ class HomeProduct extends StatelessWidget {
                           child: Center(
                             child: InkWell(
                               onTap: () {
-                                EasyLoading.show(status: 'loading...');
-                                Future.delayed(const Duration(seconds: 3), () {
-                                  EasyLoading.dismiss();
-                                });
                                 Navigator.pushNamed(
                                     context, Routes.productDetailPage);
                               },

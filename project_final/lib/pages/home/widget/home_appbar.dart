@@ -24,13 +24,13 @@ class HomeAppBar extends StatelessWidget {
             ),
             Container(
               alignment: Alignment.centerRight,
-              height: getHeight(context, height: 0.06),
-              width: getWidth(context, width: 0.20),
+              height: getHeight(context, height: 0.04),
+              width: getWidth(context, width: 0.15),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.grey),
               child: Container(
-                height: getHeight(context, height: 0.06),
-                width: getWidth(context, width: 0.10),
+                height: getHeight(context, height: 0.04),
+                width: getWidth(context, width: 0.07),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
                     color: Colors.amber),
