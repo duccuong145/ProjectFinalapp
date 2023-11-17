@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:like_button/like_button.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
@@ -37,14 +36,15 @@ class HomeProduct extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
+                flex: 1,
                 child: Container(
                   padding: EdgeInsets.symmetric(
                       horizontal: getWidth(context, width: 0.02),
                       vertical: getHeight(context, height: 0.02)),
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(
-                            'https://mobilepriceall.com/wp-content/uploads/2022/09/Apple-iPhone-14-Pro-Max.jpg'),
+                        image:
+                            AssetImage('assets/images/iphone-15-xtmobile.jpg'),
                         fit: BoxFit.cover),
                   ),
                   child: const LikeButton(
@@ -53,43 +53,43 @@ class HomeProduct extends StatelessWidget {
                   ),
                 ),
               ),
-              spaceHeight(context, height: 0.01),
               Expanded(
+                flex: 1,
                 child: SizedBox(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
-                        horizontal: getWidth(context, width: 0.02),
-                        vertical: getHeight(context, height: 0.02)),
+                      horizontal: getWidth(context, width: 0.02),
+                    ),
                     child: Column(
                       children: [
                         Text(
                           'Iphone 15 Pro Max',
-                          style: mediumTextStyle(context),
+                          style: mediumTextStyle(context, size: 0.02),
+                          maxLines: 1,
                         ),
-                        spaceHeight(context, height: 0.03),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                '\$ 9.99',
-                                style: mediumTextStyle(
-                                  context,
-                                  color: Colors.yellow[800],
+                        Expanded(
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  '\$9.99',
+                                  style: mediumTextStyle(context,
+                                      color: Colors.yellow[800], size: 0.02),
                                 ),
                               ),
-                            ),
-                            Text(
-                              '(243)',
-                              style: mediumTextStyle(context,
-                                  color: Colors.blueGrey),
-                            ),
-                            Icon(
-                              Icons.star,
-                              color: Colors.yellow[600],
-                            )
-                          ],
+                              Text(
+                                '(243)',
+                                style: mediumTextStyle(context,
+                                    size: 0.02, color: Colors.blueGrey),
+                              ),
+                              Icon(
+                                Icons.star,
+                                color: Colors.yellow[600],
+                              )
+                            ],
+                          ),
                         ),
-                        spaceHeight(context, height: 0.03),
+                        spaceHeight(context, height: 0.01),
                         Container(
                           height: getHeight(context, height: 0.07),
                           width: getWidth(context, width: 0.32),

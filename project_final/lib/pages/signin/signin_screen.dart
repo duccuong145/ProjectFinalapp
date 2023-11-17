@@ -141,7 +141,7 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),
                         ],
                       ),
-                      spaceHeight(context, height: 0.02),
+                      spaceHeight(context, height: 0.04),
                       Center(
                         child: Text(
                           'Do not have an account ?',

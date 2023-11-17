@@ -96,11 +96,12 @@ class ProductDetail extends StatelessWidget {
                           color: Colors.yellow,
                           size: 30,
                         ),
-                        Text(
-                          '4.6 ( 99 reviews)',
-                          style: mediumTextStyle(context),
+                        Expanded(
+                          child: Text(
+                            '4.6 ( 99 reviews)',
+                            style: mediumTextStyle(context, size: 0.02),
+                          ),
                         ),
-                        const Expanded(child: SizedBox()),
                         const Icon(
                           Icons.airport_shuttle,
                           size: 30,
@@ -109,8 +110,8 @@ class ProductDetail extends StatelessWidget {
                         spaceWidth(context, width: 0.02),
                         Text(
                           'FREE DELIVERY',
-                          style: largeTextStyle(context,
-                              color: Colors.green, size: 0.03),
+                          style: mediumTextStyle(context,
+                              color: Colors.green, size: 0.02),
                         ),
                       ],
                     ),
@@ -123,7 +124,7 @@ class ProductDetail extends StatelessWidget {
                       children: [
                         Text(
                           '5.8\$',
-                          style: largeTextStyle(context),
+                          style: largeTextStyle(context, size: 0.025),
                         ),
                         const Expanded(child: SizedBox()),
                         InkWell(
@@ -169,25 +170,25 @@ class ProductDetail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    spaceHeight(context, height: 0.02),
+                    spaceHeight(context),
                     Container(
+                      width: getWidth(context, width: 0.5),
+                      height: getHeight(context, height: 0.07),
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Colors.amber),
-                      height: getHeight(context, height: 0.06),
-                      width: getWidth(context, width: 0.5),
+                          color: Colors.yellow[700]),
                       child: Center(
                         child: Text(
                           '20% OFF DISCOUNT',
                           style: largeTextStyle(context,
-                              size: 0.025, color: Colors.white),
+                              size: 0.02, color: Colors.white),
                         ),
                       ),
                     ),
                     spaceHeight(context),
                     Center(
                       child: Container(
-                        height: getHeight(context, height: 0.09),
+                        height: getHeight(context, height: 0.07),
                         width: getWidth(context, width: 1),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),
@@ -202,8 +203,8 @@ class ProductDetail extends StatelessWidget {
                             ),
                             Text(
                               'ADD TO CART',
-                              style:
-                                  largeTextStyle(context, color: Colors.white),
+                              style: largeTextStyle(context,
+                                  color: Colors.white, size: 0.03),
                             ),
                           ],
                         ),
