@@ -1,43 +1,67 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
+import 'package:project_final/providers/category_provider.dart';
+import 'package:provider/provider.dart';
 
-class HomeSlider extends StatelessWidget {
+class HomeSlider extends StatefulWidget {
   const HomeSlider({super.key});
+
+  @override
+  State<HomeSlider> createState() => _HomeSliderState();
+}
+
+class _HomeSliderState extends State<HomeSlider> {
+  late Future sliderFuture;
+
+  @override
+  void didChangeDependencies() {
+    sliderFuture = Provider.of<CategoryProvider>(context).getSlider();
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return CarouselSlider.builder(
-      options: CarouselOptions(
-        enlargeCenterPage: true,
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: getHeight(context, height: 0.02)),
+      child: FutureBuilder(
+        future: sliderFuture,
+        initialData: const [],
+        builder: (context, snapshot) {
+          final sliderData = snapshot.data! as List;
+          return snapshot.hasData
+              ? CarouselSlider(
+                  items: sliderData.map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                          width: MediaQuery.of(context).size.width,
+                          margin: EdgeInsets.symmetric(
+                            horizontal: getWidth(context, width: 0.02),
+                          ),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.white.withOpacity(0.5),
+                                spreadRadius: 8,
+                                blurRadius: 10,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                            image: DecorationImage(
+                                image: NetworkImage(i.image),
+                                fit: BoxFit.cover),
+                          ),
+                        );
+                      },
+                    );
+                  }).toList(),
+                  options: CarouselOptions(autoPlay: true))
+              : const Text('No data');
+        },
       ),
-      itemCount: 10,
-      itemBuilder: (BuildContext context, int itemIndex, int pageViewIndex) {
-        return Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            color: Colors.primaries[itemIndex],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Happy Black Friday',
-                style: mediumTextStyle(context),
-              ),
-              const Text(
-                '20% OFF',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),
-              ),
-              Text(
-                '*for All Menus',
-                style: smallTextStyle(context, size: 0.02),
-              )
-            ],
-          ),
-        );
-      },
     );
   }
 }

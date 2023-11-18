@@ -5,8 +5,6 @@ import 'package:project_final/my_app.dart';
 
 void main(List<String> args) {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(DevicePreview(
-    enabled: true,
-    builder: (context) => const MyApp(),
-  ));
+  runApp( const MyApp(),
+  );
 }
