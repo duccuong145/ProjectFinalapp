@@ -8,7 +8,7 @@ import 'package:project_final/pages/home/widget/home_category.dart';
 import 'package:project_final/pages/home/widget/home_product.dart';
 import 'package:project_final/pages/home/widget/home_search.dart';
 import 'package:project_final/pages/home/widget/home_slider.dart';
-import 'package:project_final/providers/category_provider.dart';
+import 'package:project_final/providers/slider_provider.dart';
 import 'package:project_final/routes/roures.dart';
 
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class _CategoryHomeState extends State<HomePage> {
   late Future categoryrFuture;
   @override
   void didChangeDependencies() {
-    categoryrFuture = Provider.of<CategoryProvider>(context).getSlider();
+    categoryrFuture = Provider.of<SliderProvider>(context).getSlider();
     super.didChangeDependencies();
   }
 

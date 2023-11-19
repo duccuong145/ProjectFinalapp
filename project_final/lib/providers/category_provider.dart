@@ -3,15 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import '../models/slider_models.dart';
+import '../models/category_models.dart';
 
 class CategoryProvider extends ChangeNotifier {
-  Future<List<Sli>> getSlider() async {
-    const url = 'http://apiforlearning.zendvn.com/api/mobile/sliders';
-    final respone = await http.get(Uri.parse(url));
-    final jsonData = jsonDecode(respone.body);
-    List<Sli> data = List<Sli>.from(
-        jsonData.map((slider) => Sli.fromJson(jsonEncode(slider)))).toList();
-    return data;
+  Future<List<Category>> getCategoryr() async {
+    const url = 'http://apiforlearning.zendvn.com/api/mobile/categories';
+    try {
+      final respone = await http.get(Uri.parse(url));
+      final jsonData = jsonDecode(respone.body);
+      List<Category> data = List<Category>.from(
+          jsonData.map((cate) => Category.fromJson(jsonEncode(cate)))).toList();
+      return data;
+    } catch (e) {
+      return Future.error(e);
+    }
   }
 }

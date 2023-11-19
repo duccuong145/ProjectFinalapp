@@ -9,6 +9,7 @@ import 'package:project_final/pages/product/product_detail.dart';
 import 'package:project_final/pages/profile/profile.dart';
 import 'package:project_final/pages/signin/signin_screen.dart';
 import 'package:project_final/providers/category_provider.dart';
+import 'package:project_final/providers/slider_provider.dart';
 import 'package:project_final/providers/theme_provider.dart';
 import 'package:project_final/routes/roures.dart';
 import 'package:project_final/routes/route_name.dart';
@@ -22,10 +23,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => CategoryProvider(),
+          create: (_) => SliderProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => ThemeProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => CategoryProvider(),
         ),
       ],
       child: Consumer<ThemeProvider>(
@@ -42,7 +46,7 @@ class MyApp extends StatelessWidget {
             ),
             themeMode: ThemeMode.light,
             debugShowCheckedModeBanner: false,
-            initialRoute: Routes.signinPage,
+            initialRoute: Routes.homePage,
             onGenerateRoute: RouteName.onGenerateRoute,
           );
         },

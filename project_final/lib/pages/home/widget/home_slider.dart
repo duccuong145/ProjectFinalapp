@@ -2,7 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
-import 'package:project_final/providers/category_provider.dart';
+import 'package:project_final/providers/slider_provider.dart';
 import 'package:provider/provider.dart';
 
 class HomeSlider extends StatefulWidget {
@@ -17,7 +17,7 @@ class _HomeSliderState extends State<HomeSlider> {
 
   @override
   void didChangeDependencies() {
-    sliderFuture = Provider.of<CategoryProvider>(context).getSlider();
+    sliderFuture = Provider.of<SliderProvider>(context).getSlider();
     super.didChangeDependencies();
   }
 
@@ -42,14 +42,6 @@ class _HomeSliderState extends State<HomeSlider> {
                           ),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.white.withOpacity(0.5),
-                                spreadRadius: 8,
-                                blurRadius: 10,
-                                offset: const Offset(0, 10),
-                              ),
-                            ],
                             image: DecorationImage(
                                 image: NetworkImage(i.image),
                                 fit: BoxFit.cover),
