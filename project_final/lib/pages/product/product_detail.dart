@@ -170,7 +170,7 @@ class ProductDetail extends StatelessWidget {
                         ),
                       ],
                     ),
-                    spaceHeight(context),
+                    spaceHeight(context, height: 0.01),
                     Container(
                       width: getWidth(context, width: 0.5),
                       height: getHeight(context, height: 0.07),
@@ -185,10 +185,10 @@ class ProductDetail extends StatelessWidget {
                         ),
                       ),
                     ),
-                    spaceHeight(context),
+                    spaceHeight(context, height: 0.02),
                     Center(
                       child: Container(
-                        height: getHeight(context, height: 0.07),
+                        height: getHeight(context, height: 0.06),
                         width: getWidth(context, width: 1),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(30),

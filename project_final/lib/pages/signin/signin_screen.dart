@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:project_final/config/widget/checkbox_config.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
+import 'package:project_final/providers/auth_provider.dart';
 import 'package:project_final/routes/roures.dart';
+import 'package:provider/provider.dart';
 
 class SigninScreen extends StatefulWidget {
-  const SigninScreen({super.key});
+  SigninScreen({Key? key}) : super(key: key);
+
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   State<SigninScreen> createState() => _SigninScreenState();
@@ -18,6 +22,15 @@ class _SigninScreenState extends State<SigninScreen> {
 
   @override
   Widget build(BuildContext context) {
+    void handleSubmit() {
+      final email = widget._emailController.text;
+      final password = widget._passwordController.text;
+      if (email.isNotEmpty && password.isNotEmpty) {
+        Provider.of<AuthProvider>(context, listen: false)
+            .login(email, password);
+      }
+    }
+
     return Scaffold(
       backgroundColor: Colors.green,
       body: Column(
@@ -63,9 +76,10 @@ class _SigninScreenState extends State<SigninScreen> {
                         style: smallTextStyle(context, size: 0.02),
                       ),
                       spaceHeight(context),
-                      const TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Name Account',
+                      TextField(
+                        controller: widget._emailController,
+                        decoration: const InputDecoration(
+                          hintText: 'Email',
                           border: OutlineInputBorder(),
                           prefixIcon: Icon(
                             Icons.account_circle,
@@ -76,6 +90,7 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                       spaceHeight(context),
                       TextFormField(
+                        controller: widget._passwordController,
                         obscureText: _obscureText,
                         decoration: InputDecoration(
                           hintText: 'Password',
@@ -100,25 +115,23 @@ class _SigninScreenState extends State<SigninScreen> {
                       ),
                       spaceHeight(context),
                       InkWell(
-                        onTap: () {},
-                        child: InkWell(
-                          onTap: () {
-                            Future.delayed(const Duration(seconds: 2), () {});
-                            Navigator.pushNamed(context, Routes.homePage);
-                          },
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: getHeight(context, height: 0.08),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: Colors.green),
-                              child: Center(
-                                child: Text(
-                                  'SIGN IN',
-                                  style: largeTextStyle(context,
-                                      color: Colors.white),
-                                ),
+                        onTap: () {
+                          handleSubmit();
+                          Future.delayed(const Duration(seconds: 1), () {});
+                          Navigator.pushNamed(context, Routes.homePage);
+                        },
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: getHeight(context, height: 0.08),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.green),
+                            child: Center(
+                              child: Text(
+                                'SIGN IN',
+                                style: largeTextStyle(context,
+                                    color: Colors.white),
                               ),
                             ),
                           ),
@@ -156,11 +169,16 @@ class _SigninScreenState extends State<SigninScreen> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
                               color: Colors.green),
-                          child: Center(
-                            child: Text(
-                              'CREATE AN ACCOUNT',
-                              style: largeTextStyle(context,
-                                  size: 0.03, color: Colors.white),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, Routes.signupPage);
+                            },
+                            child: Center(
+                              child: Text(
+                                'CREATE AN ACCOUNT',
+                                style: largeTextStyle(context,
+                                    size: 0.03, color: Colors.white),
+                              ),
                             ),
                           ),
                         ),

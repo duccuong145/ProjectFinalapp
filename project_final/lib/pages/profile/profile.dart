@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:project_final/config/widget/bottombar_config.dart';
 import 'package:project_final/config/widget/size_config.dart';
 import 'package:project_final/config/widget/text_config.dart';
+import 'package:project_final/pages/signin/signin_screen.dart';
+import 'package:project_final/providers/auth_provider.dart';
 import 'package:project_final/providers/theme_provider.dart';
+import 'package:project_final/routes/roures.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
@@ -236,7 +239,12 @@ class _ProfileState extends State<Profile> {
                     Expanded(
                       child: Text(
                         'Dark Mode',
-                        style: largeTextStyle(context, size: 0.03),
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          color: context.watch<ThemeProvider>().isDarkMode
+                              ? Colors.white
+                              : Colors.black,
+                        ),
                       ),
                     ),
                     Consumer<ThemeProvider>(
@@ -251,10 +259,32 @@ class _ProfileState extends State<Profile> {
                     )
                   ],
                 ),
+                spaceHeight(context),
+                InkWell(
+                  onTap: () {
+                    Provider.of<AuthProvider>(context, listen: false).logout();
+                  },
+                  child: SizedBox(
+                    width: double.infinity,
+                    height: getHeight(context, height: 0.08),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Colors.green),
+                      child: Center(
+                        child: Text(
+                          'LOG OUT',
+                          style: largeTextStyle(context, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ),
+        bottomNavigationBar: const BottomBar(),
       ),
     );
   }

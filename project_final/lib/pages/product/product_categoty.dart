@@ -100,6 +100,7 @@ class ProductCategory extends StatelessWidget {
             ],
           ),
         ),
+        bottomNavigationBar: const BottomBar(),
       ),
     );
   }

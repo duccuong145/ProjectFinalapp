@@ -8,6 +8,8 @@ import 'package:project_final/pages/home/widget/home_category.dart';
 import 'package:project_final/pages/home/widget/home_product.dart';
 import 'package:project_final/pages/home/widget/home_search.dart';
 import 'package:project_final/pages/home/widget/home_slider.dart';
+import 'package:project_final/pages/signin/signin_screen.dart';
+import 'package:project_final/providers/auth_provider.dart';
 import 'package:project_final/providers/slider_provider.dart';
 import 'package:project_final/routes/roures.dart';
 
@@ -27,6 +29,32 @@ class _CategoryHomeState extends State<HomePage> {
     categoryrFuture = Provider.of<SliderProvider>(context).getSlider();
     super.didChangeDependencies();
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<AuthProvider>(
+      builder: (context, auth, child) {
+        return auth.isAuth
+            ? const Home()
+            : FutureBuilder(
+                future: auth.autoLogin(),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  }
+                  return snapshot.data ? const Home() : SigninScreen();
+                });
+      },
+    );
+  }
+}
+
+class Home extends StatelessWidget {
+  const Home({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -81,6 +109,7 @@ class _CategoryHomeState extends State<HomePage> {
           ),
         ),
       ),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

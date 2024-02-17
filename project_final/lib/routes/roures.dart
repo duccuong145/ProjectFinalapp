@@ -12,4 +12,5 @@ class Routes {
   static const homePage = '/homePage';
   static const homeCategoryPage = '/homeCategoryPage';
   static const searchCategoryPage = '/searchCategoryPage';
+  static const signupPage = '/signupPage';
 }

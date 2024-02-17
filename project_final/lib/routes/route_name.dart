@@ -13,6 +13,7 @@ import 'package:project_final/pages/search/search.dart';
 import 'package:project_final/pages/search/search_body.dart/search_appbar.dart';
 import 'package:project_final/pages/search/search_body.dart/search_category.dart';
 import 'package:project_final/pages/signin/signin_screen.dart';
+import 'package:project_final/pages/signup/signup_page.dart';
 import 'package:project_final/routes/roures.dart';
 
 class RouteName {
@@ -22,7 +23,7 @@ class RouteName {
         return MaterialPageRoute(builder: (_) => const ReviewPage());
 
       case Routes.signinPage:
-        return MaterialPageRoute(builder: (_) => const SigninScreen());
+        return MaterialPageRoute(builder: (_) => SigninScreen());
       case Routes.productDetailPage:
         return MaterialPageRoute(builder: (_) => const ProductDetail());
       case Routes.searchPage:
@@ -39,6 +40,8 @@ class RouteName {
         return MaterialPageRoute(builder: (_) => const HomeCategory());
       case Routes.searchCategoryPage:
         return MaterialPageRoute(builder: (_) => const SearchCategory());
+      case Routes.signupPage:
+        return MaterialPageRoute(builder: (_) => const SignupScreen());
 
       default:
         return MaterialPageRoute(builder: (_) => const ReviewPage());

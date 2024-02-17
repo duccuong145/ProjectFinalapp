@@ -18,7 +18,7 @@ class HomeAppBar extends StatelessWidget {
           children: [
             Expanded(
               child: Text(
-                'Louis A. 👋',
+                'Đ.Cường 👋',
                 style: largeTextStyle(context, size: 0.05),
               ),
             ),

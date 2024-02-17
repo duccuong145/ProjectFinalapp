@@ -7,6 +7,9 @@ class ThemeProvider with ChangeNotifier {
 
   void toggleTheme() {
     _isDarkMode = !_isDarkMode;
+
     notifyListeners();
   }
+
+  Color get textColor => _isDarkMode ? Colors.white : Colors.black;
 }

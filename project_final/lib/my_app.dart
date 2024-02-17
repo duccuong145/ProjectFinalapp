@@ -8,6 +8,7 @@ import 'package:project_final/pages/product/product_categoty.dart';
 import 'package:project_final/pages/product/product_detail.dart';
 import 'package:project_final/pages/profile/profile.dart';
 import 'package:project_final/pages/signin/signin_screen.dart';
+import 'package:project_final/providers/auth_provider.dart';
 import 'package:project_final/providers/category_provider.dart';
 import 'package:project_final/providers/slider_provider.dart';
 import 'package:project_final/providers/theme_provider.dart';
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => CategoryProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => AuthProvider(),
+        ),
       ],
       child: Consumer<ThemeProvider>(
         builder: (context, themeProvider, child) {
@@ -46,7 +50,7 @@ class MyApp extends StatelessWidget {
             ),
             themeMode: ThemeMode.light,
             debugShowCheckedModeBanner: false,
-            initialRoute: Routes.homePage,
+            initialRoute: Routes.reviewPage,
             onGenerateRoute: RouteName.onGenerateRoute,
           );
         },
