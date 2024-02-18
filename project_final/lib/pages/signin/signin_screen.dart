@@ -118,7 +118,6 @@ class _SigninScreenState extends State<SigninScreen> {
                         onTap: () {
                           handleSubmit();
                           Future.delayed(const Duration(seconds: 1), () {});
-                          Navigator.pushNamed(context, Routes.homePage);
                         },
                         child: SizedBox(
                           width: double.infinity,
